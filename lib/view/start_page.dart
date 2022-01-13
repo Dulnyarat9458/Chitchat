@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:chitchat/Controller/colors.dart';
 import 'package:chitchat/view/Auth/login_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,138 +17,96 @@ class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xff3d4048),
-            Color(0xff1a1d24),
-          ],
-        )),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
+              Text(
+                "eieie",
+                style: TextStyle(color: Colors.transparent),
+              ),
               Column(
                 children: [
                   Container(
                     margin: const EdgeInsets.only(
-                      top: 85,
+                      top: 30,
                       left: 30,
                       right: 30,
                       bottom: 10,
                     ),
-                    padding: const EdgeInsets.all(30),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 5,
-                          color: Colors.black12.withOpacity(0.1),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0xff3d3c45),
-                            offset: Offset(-6, -6),
-                            spreadRadius: 3,
-                            blurRadius: 4,
+                    padding: const EdgeInsets.all(10),
+                    child: ShaderMask(
+                      blendMode: BlendMode.srcATop,
+                      shaderCallback: (bounds) => const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xfff6072f),
+                            Color(0xfff200a1),
+                          ]).createShader(bounds),
+                      child: const Icon(
+                        CupertinoIcons.chat_bubble,
+                        color: Color(0xff875ae8),
+                        size: 100.0,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
                           ),
-                          BoxShadow(
-                            color: Color(0xff1e1f23).withOpacity(0.3),
-                            offset: Offset(6, 6),
-                            spreadRadius: 3,
-                            blurRadius: 4,
-                          )
-                        ],
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(1000)),
-                        color: const Color(0xff22262f)),
-                    child: const Icon(
-                      CupertinoIcons.chat_bubble,
-                      color: Color(0xff875ae8),
-                      size: 200.0,
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
+                          ),
+                          // decoration: const BoxDecoration(
+                          //     borderRadius: BorderRadius.all(Radius.circular(1000)),
+                          //     color: Color(0xff22262f)),
+                          child: Text(
+                            "Chit & Chat",
+                            style: GoogleFonts.kanit(
+                                color: Colors.white,
+                                fontSize: 28,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
+                            bottom: 10,
+                          ),
+                          padding: const EdgeInsets.only(
+                            left: 30,
+                            right: 30,
+                          ),
+                          // decoration: const BoxDecoration(
+                          //     borderRadius: BorderRadius.all(Radius.circular(1000)),
+                          //     color: Color(0xff22262f)),
+                          child: Text(
+                            "Connect the World",
+                            style: GoogleFonts.kanit(
+                                color: Colors.white54,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const Divider(
                     color: Colors.transparent,
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          left: 30,
-                          right: 30,
-                        ),
-                        padding: const EdgeInsets.only(
-                          left: 30,
-                          right: 30,
-                        ),
-                        // decoration: const BoxDecoration(
-                        //     borderRadius: BorderRadius.all(Radius.circular(1000)),
-                        //     color: Color(0xff22262f)),
-                        child: Text(
-                          "Chit & Chat",
-                          style: GoogleFonts.kanit(
-                              color: Colors.white,
-                              fontSize: 45,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          left: 30,
-                          right: 30,
-                          bottom: 10,
-                        ),
-                        padding: const EdgeInsets.only(
-                          left: 30,
-                          right: 30,
-                        ),
-                        // decoration: const BoxDecoration(
-                        //     borderRadius: BorderRadius.all(Radius.circular(1000)),
-                        //     color: Color(0xff22262f)),
-                        child: Text(
-                          "Connect the World",
-                          style: GoogleFonts.kanit(
-                              color: Colors.white54,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
               Container(
                   margin: const EdgeInsets.only(bottom: 50),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 3,
-                        color: Colors.black12.withOpacity(0.2),
-                      ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0xff3d3c45),
-                          offset: Offset(-6, -6),
-                          spreadRadius: 5,
-                          blurRadius: 5,
-                        ),
-                        BoxShadow(
-                          color: Color(0xff101114),
-                          offset: Offset(6, 6),
-                          spreadRadius: 5,
-                          blurRadius: 5,
-                        )
-                      ],
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Color(0xff875ae8),
-                          Color(0xffb259e7),
-                        ],
-                      )),
                   child: buildStartButton())
             ],
           ),
@@ -159,11 +117,15 @@ class _StartPageState extends State<StartPage> {
 
   Widget buildStartButton() {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 3,
+          color: Colors.black12.withOpacity(0.2),
+        ),
         borderRadius: BorderRadius.all(Radius.circular(30)),
-        gradient: LinearGradient(colors: [
-          Color(0xffb259e7),
-          Color(0xff875ae8),
+        gradient: LinearGradient(colors: const [
+          Color(0xfff6072f),
+          Color(0xfff200a1),
         ]),
       ),
       child: ElevatedButton(
@@ -183,10 +145,12 @@ class _StartPageState extends State<StartPage> {
           );
         },
         child: Text(
-          "Get Started",
-          style: GoogleFonts.kanit(
-              color: Colors.white, fontSize: 22, fontWeight: FontWeight.w400),
-        ),
+            'Get Started',
+            style: GoogleFonts.kanit(
+              fontSize: 20,
+              color: Colors.black,
+            ),
+          ),
       ),
     );
   }
