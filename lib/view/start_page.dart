@@ -17,7 +17,7 @@ class _StartPageState extends State<StartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xff0a0d14),
       body: Container(
         child: Center(
           child: Column(
@@ -148,7 +148,7 @@ class _StartPageState extends State<StartPage> {
             'Get Started',
             style: GoogleFonts.kanit(
               fontSize: 20,
-              color: Colors.black,
+              color:  Color(0xff0a0d14),
             ),
           ),
       ),

@@ -31,34 +31,13 @@ class _LoginPageState extends State<LoginPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color(0xff22262f),
+        backgroundColor: Colors.black,
         body: Center(
           child: Container(
             decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xff1e1f23).withOpacity(0.2),
-                    offset: Offset(-6, -6),
-                    spreadRadius: 6,
-                    blurRadius: 6,
-                  ),
-                  BoxShadow(
-                    color: Color(0xff1e1f23).withOpacity(0.2),
-                    offset: Offset(6, 6),
-                    spreadRadius: 6,
-                    blurRadius: 6,
-                  )
-                ],
                 borderRadius:
                     const BorderRadius.only(topRight: Radius.circular(330)),
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xff3d4048),
-                    Color(0xff1a1d24),
-                  ],
-                )),
+                color: Color(0xff0a0d14)),
             alignment: Alignment.center,
             child: SingleChildScrollView(
               child: Center(
@@ -73,25 +52,6 @@ class _LoginPageState extends State<LoginPage> {
                             Container(
                               margin:
                                   EdgeInsets.only(top: 36, bottom: 6, left: 46),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: Color(0xff22262f),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0xff3d3c45).withOpacity(1),
-                                    offset: Offset(-4, -4),
-                                    spreadRadius: 6,
-                                    blurRadius: 3,
-                                  ),
-                                  BoxShadow(
-                                    color: Color(0xff1e1f23).withOpacity(0.2),
-                                    offset: Offset(4, 4),
-                                    spreadRadius: 6,
-                                    blurRadius: 3,
-                                  )
-                                ],
-                              ),
                               child: Container(
                                 child: IconButton(
                                   icon: GradientIcon(
@@ -101,8 +61,8 @@ class _LoginPageState extends State<LoginPage> {
                                       begin: Alignment.topRight,
                                       end: Alignment.bottomLeft,
                                       colors: <Color>[
-                                        Color(0xffb259e7),
-                                        Color(0xff875ae8),
+                                        Color(0xfff6072f),
+                                        Color(0xfff200a1),
                                       ],
                                     ),
                                   ),
@@ -156,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.transparent,
                         ),
                         Container(
-                          padding: EdgeInsets.all(12),
+                          padding: EdgeInsets.only(bottom:8),
                           child: Column(
                             children: [
                               buildTextFieldEmail(),
@@ -169,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                         Divider(
                           color: Colors.transparent,
                         ),
-                        buildButtonSignInGoogle(context),
+                      
                         Text("\n"),
                         Center(
                             child: Row(
@@ -209,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Text(
           'Forgot Password?',
           style: GoogleFonts.kanit(
-            color: const Color(0xff9c75e2),
+            color:  Colors.red.shade600,
           ),
         ),
       ),
@@ -229,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Text(
           'Sign Up',
           style: GoogleFonts.kanit(
-            color: const Color(0xff7ca8ff),
+            color: const Color(0xffff6951),
           ),
         ),
       ),
@@ -267,24 +227,10 @@ class _LoginPageState extends State<LoginPage> {
               borderRadius: const BorderRadius.all(Radius.circular(25)),
               gradient: const LinearGradient(
                 colors: [
-                  Color(0xff875ae8),
-                  Color(0xffb259e7),
+                  Color(0xfff6072f),
+                                        Color(0xfff200a1),
                 ],
               ),
-              boxShadow: [
-                const BoxShadow(
-                  color: Color(0xff3d3c45),
-                  offset: Offset(-4, -4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                ),
-                const BoxShadow(
-                  color: Color(0xff1e1f23),
-                  offset: Offset(4, 4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                )
-              ],
             ),
             margin: const EdgeInsets.only(top: 12),
             padding: const EdgeInsets.all(8)),
@@ -292,61 +238,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Container buildButtonSignInGoogle(BuildContext context) {
-    return Container(
-      child: InkWell(
-        onTap: () {
-          checkAuthentication(context);
-        },
-        child: Container(
-            constraints: BoxConstraints.expand(width: 300, height: 50),
-            child: Text(
-              "Continue with Google",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.kanit(
-                fontSize: 18,
-                color: Colors.white,
-                /*     shadows: [
-                  Shadow(
-                    color: Colors.black,
-                    blurRadius: 16.0,
-                    offset: Offset(-0.0, 0.0),
-                  ),
-                ], */
-              ),
-            ),
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 3,
-                color: Colors.black12.withOpacity(0.2),
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(25)),
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xffa63430),
-                  Color(0xfff04c4d),
-                ],
-              ),
-              boxShadow: [
-                const BoxShadow(
-                  color: Color(0xff3d3c45),
-                  offset: Offset(-4, -4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                ),
-                const BoxShadow(
-                  color: Color(0xff1e1f23),
-                  offset: Offset(4, 4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                )
-              ],
-            ),
-            margin: const EdgeInsets.only(top: 12),
-            padding: const EdgeInsets.all(8)),
-      ),
-    );
-  }
+ 
 
   Future<Null> checkAuthentication(BuildContext context) async {
     await Firebase.initializeApp().then((value) async {
@@ -367,20 +259,6 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xff3d3c45),
-              offset: Offset(1, 1),
-              spreadRadius: -2,
-              blurRadius: 5,
-            ),
-            BoxShadow(
-              color: Color(0xff1e1f23),
-              offset: Offset(-1, -1),
-              spreadRadius: -2,
-              blurRadius: 5,
-            )
-          ],
         ),
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.only(top: 12),
@@ -388,22 +266,36 @@ class _LoginPageState extends State<LoginPage> {
             keyboardType: TextInputType.emailAddress,
             onChanged: (value) => email = value.trim(),
             decoration: InputDecoration(
-              enabledBorder: new OutlineInputBorder(
+              enabledBorder: new UnderlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(color: Colors.transparent),
+                borderSide: BorderSide(color: Colors.white),
               ),
-              focusedBorder: new OutlineInputBorder(
+              focusedBorder: new UnderlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(color: Colors.transparent),
+                borderSide: BorderSide(
+                  color: Color(0xfff200a1),
+                ),
               ),
-              fillColor: const Color(0xff22262f),
-              filled: true,
               isDense: true,
               contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
+              prefixIcon:
+              ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xfff6072f),
+                      Color(0xfff200a1),
+                    ]).createShader(bounds),
+                child: const Icon(
+                  
                 Icons.email,
-                color: const Color(0xff7ca8ff),
+                color: const Color(0xfff04c4d),
               ),
+                ),
+           
+              
               hintText: 'Email',
               hintStyle: GoogleFonts.kanit(
                 fontSize: 16.0,
@@ -420,20 +312,6 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xff3d3c45),
-              offset: Offset(1, 1),
-              spreadRadius: -2,
-              blurRadius: 5,
-            ),
-            BoxShadow(
-              color: Color(0xff1e1f23),
-              offset: Offset(-1, -1),
-              spreadRadius: -2,
-              blurRadius: 5,
-            )
-          ],
         ),
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.only(top: 16),
@@ -442,21 +320,31 @@ class _LoginPageState extends State<LoginPage> {
             onChanged: (value) => password = value.trim(),
             obscureText: true,
             decoration: InputDecoration(
-              enabledBorder: new OutlineInputBorder(
+              enabledBorder: new UnderlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(color: Colors.transparent),
+                borderSide: BorderSide(color: Colors.white),
               ),
-              focusedBorder: new OutlineInputBorder(
+              focusedBorder: new UnderlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(color: Colors.transparent),
+                borderSide: BorderSide(
+                  color: Color(0xfff200a1),
+                ),
               ),
-              fillColor: const Color(0xff22262f),
-              filled: true,
               isDense: true,
               contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: const Color(0xff7ca8ff),
+              prefixIcon: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xfff6072f),
+                      Color(0xfff200a1),
+                    ]).createShader(bounds),
+                child: const Icon(
+                  Icons.lock,
+                  color: const Color(0xfff04c4d),
+                ),
               ),
               hintText: 'Password',
               hintStyle: GoogleFonts.kanit(
