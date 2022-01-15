@@ -26,38 +26,14 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color(0xff22262f),
+        backgroundColor: Colors.black,
         body: Center(
           child: Container(
-            decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0xff1e1f23).withOpacity(0.2),
-                    offset: Offset(-6, -6),
-                    spreadRadius: 6,
-                    blurRadius: 6,
-                  ),
-                  BoxShadow(
-                    color: Color(0xff1e1f23).withOpacity(0.2),
-                    offset: Offset(6, 6),
-                    spreadRadius: 6,
-                    blurRadius: 6,
-                  )
-                ],
-                borderRadius: BorderRadius.only(topRight: Radius.circular(330)),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xff3d4048),
-                    Color(0xff1a1d24),
-                  ],
-                )),
             alignment: Alignment.center,
             child: Center(
               child: Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,25 +43,6 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
                             Container(
                               margin:
                                   EdgeInsets.only(top: 40, bottom: 6, left: 46),
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: Color(0xff22262f),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0xff3d3c45).withOpacity(1),
-                                    offset: Offset(-4, -4),
-                                    spreadRadius: 6,
-                                    blurRadius: 3,
-                                  ),
-                                  BoxShadow(
-                                    color: Color(0xff1e1f23).withOpacity(0.2),
-                                    offset: Offset(4, 4),
-                                    spreadRadius: 6,
-                                    blurRadius: 3,
-                                  )
-                                ],
-                              ),
                               child: Container(
                                 child: IconButton(
                                   icon: GradientIcon(
@@ -95,8 +52,8 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
                                       begin: Alignment.topRight,
                                       end: Alignment.bottomLeft,
                                       colors: <Color>[
-                                        Color(0xffb259e7),
-                                        Color(0xff875ae8),
+                                        Color(0xfff6072f),
+                                        Color(0xfff200a1),
                                       ],
                                     ),
                                   ),
@@ -163,6 +120,41 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
                         ),
                         buildButtonSignIn(context),
                       ]),
+                    ), Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              margin:
+                                  EdgeInsets.only(top: 40, bottom: 6, left: 46),
+                              child: Container(
+                                child: IconButton(
+                                  icon: GradientIcon(
+                                    CupertinoIcons.chevron_back,
+                                    32.0,
+                                    const LinearGradient(
+                                      begin: Alignment.topRight,
+                                      end: Alignment.bottomLeft,
+                                      colors: <Color>[
+                                        Colors.transparent,
+                                        Colors.transparent,
+                                      ],
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    {
+                                      Navigator.pop(context);
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(),
+                        Container(),
+                      ],
                     ),
                   ],
                 ),
@@ -180,7 +172,9 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
       padding: EdgeInsets.only(right: 10),
       alignment: Alignment.centerRight,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         child: Text(
           'Forgot Password?',
           style: GoogleFonts.kanit(
@@ -242,24 +236,10 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
               borderRadius: const BorderRadius.all(Radius.circular(25)),
               gradient: const LinearGradient(
                 colors: [
-                  Color(0xff875ae8),
-                  Color(0xffb259e7),
+                  Color(0xfff6072f),
+                  Color(0xfff200a1),
                 ],
               ),
-              boxShadow: [
-                const BoxShadow(
-                  color: Color(0xff3d3c45),
-                  offset: Offset(-4, -4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                ),
-                const BoxShadow(
-                  color: Color(0xff1e1f23),
-                  offset: Offset(4, 4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                )
-              ],
             ),
             margin: const EdgeInsets.only(top: 12),
             padding: const EdgeInsets.all(8)),
@@ -302,20 +282,6 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
                   Color(0xfff04c4d),
                 ],
               ),
-              boxShadow: [
-                const BoxShadow(
-                  color: Color(0xff3d3c45),
-                  offset: Offset(-4, -4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                ),
-                const BoxShadow(
-                  color: Color(0xff1e1f23),
-                  offset: Offset(4, 4),
-                  spreadRadius: 5,
-                  blurRadius: 5,
-                )
-              ],
             ),
             margin: const EdgeInsets.only(top: 12),
             padding: const EdgeInsets.all(8)),
@@ -367,20 +333,6 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
     return Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0xff3d3c45),
-              offset: Offset(1, 1),
-              spreadRadius: -2,
-              blurRadius: 5,
-            ),
-            BoxShadow(
-              color: Color(0xff1e1f23),
-              offset: Offset(-1, -1),
-              spreadRadius: -2,
-              blurRadius: 5,
-            )
-          ],
         ),
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.only(top: 12),
@@ -400,9 +352,19 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
               filled: true,
               isDense: true,
               contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.email,
-                color: const Color(0xff7ca8ff),
+              prefixIcon: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xfff6072f),
+                      Color(0xfff200a1),
+                    ]).createShader(bounds),
+                child: const Icon(
+                  Icons.email,
+                  color: const Color(0xfff04c4d),
+                ),
               ),
               hintText: 'Email',
               hintStyle: GoogleFonts.kanit(
@@ -454,9 +416,19 @@ class _ChangePasswordPagestate extends State<ChangePasswordPage> {
               filled: true,
               isDense: true,
               contentPadding: EdgeInsets.all(18),
-              prefixIcon: Icon(
-                Icons.lock,
-                color: const Color(0xff7ca8ff),
+               prefixIcon: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xfff6072f),
+                      Color(0xfff200a1),
+                    ]).createShader(bounds),
+                child: const Icon(
+                  Icons.email,
+                  color: const Color(0xfff04c4d),
+                ),
               ),
               hintText: 'Password',
               hintStyle: GoogleFonts.kanit(

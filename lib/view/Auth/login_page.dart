@@ -29,124 +29,63 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       home: Scaffold(
+       
         backgroundColor: Colors.black,
         body: Center(
           child: Container(
-            decoration: BoxDecoration(
-                borderRadius:
-                    const BorderRadius.only(topRight: Radius.circular(330)),
-                color: Color(0xff0a0d14)),
             alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              margin:
-                                  EdgeInsets.only(top: 36, bottom: 6, left: 46),
-                              child: Container(
-                                child: IconButton(
-                                  icon: GradientIcon(
-                                    CupertinoIcons.chevron_back,
-                                    32.0,
-                                    const LinearGradient(
-                                      begin: Alignment.topRight,
-                                      end: Alignment.bottomLeft,
-                                      colors: <Color>[
-                                        Color(0xfff6072f),
-                                        Color(0xfff200a1),
-                                      ],
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    {
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(),
-                        Container(),
-                      ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(12),
+                  child: Column(children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(bottom: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Sign in",
+                            style: GoogleFonts.kanit(
+                                color: Colors.white,
+                                fontSize: 36,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ),
                     Container(
-                      margin: EdgeInsets.all(20),
-                      padding: EdgeInsets.all(12),
-                      child: Column(children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(bottom: 8, left: 16),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Sign in",
-                                style: GoogleFonts.kanit(
-                                    color: Colors.white,
-                                    fontSize: 36,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(bottom: 8, left: 16),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Please Sign in to continue",
-                                style: GoogleFonts.kanit(
-                                    color: Colors.white54,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w300),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Divider(
-                          color: Colors.transparent,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(bottom:8),
-                          child: Column(
-                            children: [
-                              buildTextFieldEmail(),
-                              buildTextFieldPassword(),
-                            ],
-                          ),
-                        ),
-                        buildForgetPasswordButton(context),
-                        buildButtonSignIn(context),
-                        Divider(
-                          color: Colors.transparent,
-                        ),
-                      
-                        Text("\n"),
-                        Center(
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                              Text("Don't have an account?",
-                                  style: GoogleFonts.kanit(
-                                      color: const Color(0xff677381),
-                                      fontSize: 16)),
-                              Text("   "),
-                              buildSignupButton(context),
-                            ])),
-                      ]),
+                      padding: EdgeInsets.only(bottom: 8),
+                      child: Column(
+                        children: [
+                          buildTextFieldEmail(),
+                          buildTextFieldPassword(),
+                        ],
+                      ),
                     ),
-                  ],
+                    buildForgetPasswordButton(context),
+                    buildButtonSignIn(context),
+                    Divider(
+                      color: Colors.transparent,
+                    ),
+                    Center(
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                          Text("Don't have an account?",
+                              style: GoogleFonts.kanit(
+                                  color: const Color(0xff677381),
+                                  fontSize: 16)),
+                          Text("   "),
+                          buildSignupButton(context),
+                        ])),
+                  ]),
                 ),
-              ),
+              ],
             ),
           ),
         ),
@@ -169,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Text(
           'Forgot Password?',
           style: GoogleFonts.kanit(
-            color:  Colors.red.shade600,
+            color: Colors.red.shade600,
           ),
         ),
       ),
@@ -189,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Text(
           'Sign Up',
           style: GoogleFonts.kanit(
-            color: const Color(0xffff6951),
+            color: const Color(0xfff200a1),
           ),
         ),
       ),
@@ -228,17 +167,14 @@ class _LoginPageState extends State<LoginPage> {
               gradient: const LinearGradient(
                 colors: [
                   Color(0xfff6072f),
-                                        Color(0xfff200a1),
+                  Color(0xfff200a1),
                 ],
               ),
             ),
-            margin: const EdgeInsets.only(top: 12),
             padding: const EdgeInsets.all(8)),
       ),
     );
   }
-
- 
 
   Future<Null> checkAuthentication(BuildContext context) async {
     await Firebase.initializeApp().then((value) async {
@@ -266,20 +202,19 @@ class _LoginPageState extends State<LoginPage> {
             keyboardType: TextInputType.emailAddress,
             onChanged: (value) => email = value.trim(),
             decoration: InputDecoration(
-              enabledBorder: new UnderlineInputBorder(
+              enabledBorder: new OutlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: Colors.transparent),
               ),
-              focusedBorder: new UnderlineInputBorder(
+              focusedBorder: new OutlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(
-                  color: Color(0xfff200a1),
-                ),
+                borderSide: BorderSide(color: Colors.transparent),
               ),
+              fillColor: const Color(0xff22262f),
+              filled: true,
               isDense: true,
               contentPadding: EdgeInsets.all(18),
-              prefixIcon:
-              ShaderMask(
+              prefixIcon: ShaderMask(
                 blendMode: BlendMode.srcATop,
                 shaderCallback: (bounds) => const LinearGradient(
                     begin: Alignment.topLeft,
@@ -289,13 +224,10 @@ class _LoginPageState extends State<LoginPage> {
                       Color(0xfff200a1),
                     ]).createShader(bounds),
                 child: const Icon(
-                  
-                Icons.email,
-                color: const Color(0xfff04c4d),
-              ),
+                  Icons.email,
+                  color: const Color(0xfff04c4d),
                 ),
-           
-              
+              ),
               hintText: 'Email',
               hintStyle: GoogleFonts.kanit(
                 fontSize: 16.0,
@@ -320,16 +252,16 @@ class _LoginPageState extends State<LoginPage> {
             onChanged: (value) => password = value.trim(),
             obscureText: true,
             decoration: InputDecoration(
-              enabledBorder: new UnderlineInputBorder(
+              enabledBorder: new OutlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(color: Colors.white),
+                borderSide: BorderSide(color: Colors.transparent),
               ),
-              focusedBorder: new UnderlineInputBorder(
+              focusedBorder: new OutlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
-                borderSide: BorderSide(
-                  color: Color(0xfff200a1),
-                ),
+                borderSide: BorderSide(color: Colors.transparent),
               ),
+              fillColor: const Color(0xff22262f),
+              filled: true,
               isDense: true,
               contentPadding: EdgeInsets.all(18),
               prefixIcon: ShaderMask(
