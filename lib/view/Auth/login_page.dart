@@ -120,6 +120,7 @@ class _LoginPageState extends State<LoginPage> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () {
+          
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => RegisterPage()),

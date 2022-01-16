@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:chitchat/Controller/dialog.dart';
+import 'package:chitchat/view/Home/home_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -427,10 +428,20 @@ class _RegisterPageState extends State<RegisterPage> {
               "userid": uid,
               "username": username,
               "email": email,
+              "about": "",
               "profile_picture":
                   "https://firebasestorage.googleapis.com/v0/b/chitchat-a40ab.appspot.com/o/profile_picture%2Fdefault.png?alt=media&token=110bfa3c-200c-48c1-a3df-747b28b4a5c3"
             }).then((value) {
-              print('Insert Value To Firestore Success');
+              FirebaseAuth.instance
+                  .signInWithEmailAndPassword(email: email, password: password)
+                  .then((value) async {
+                FirebaseAuth.instance.authStateChanges().listen((event) async {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (builder) => HomePage()),
+                      (route) => false);
+                });
+              });
             }).catchError((onError) => errorAwesomeDialog(context, onError));
           });
         }).catchError((onError) {

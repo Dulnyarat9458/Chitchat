@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:chitchat/view/Home/addfriend/addmenu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,7 +49,7 @@ class _friendListState extends State<friendList> {
     super.initState();
   }
 
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -59,14 +60,35 @@ class _friendListState extends State<friendList> {
             children: [
               Row(
                 children: [
-                  Container(width: 40, child: showUserImg(context),margin: EdgeInsets.only(right: 16),),
+                  Container(
+                    width: 40,
+                    child: showUserImg(context),
+                    margin: EdgeInsets.only(right: 16),
+                  ),
                   Text(
                     "Friend",
                     style: GoogleFonts.kanit(fontSize: 24, color: Colors.white),
                   ),
                 ],
               ),
-              showUsername(context)
+              ShaderMask(
+                  blendMode: BlendMode.srcATop,
+                  shaderCallback: (bounds) => const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xfff6072f),
+                            Color(0xfff200a1),
+                          ]).createShader(bounds),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  AddMenu()));
+                    },
+                    icon: Icon(
+                      Icons.person_add,
+                      color: const Color(0xff7ca8ff),
+                    ),
+                  )),
             ],
           ),
         ),
