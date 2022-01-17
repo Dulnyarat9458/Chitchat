@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:chitchat/view/Home/optionmenu/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -51,6 +52,7 @@ class _chatListState extends State<chatList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         title: Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -59,7 +61,11 @@ class _chatListState extends State<chatList> {
             children: [
               Row(
                 children: [
-                  Container(width: 40, child: showUserImg(context),margin: EdgeInsets.only(right: 16),),
+                  Container(
+                    width: 40,
+                    child: showUserImg(context),
+                    margin: EdgeInsets.only(right: 16),
+                  ),
                   Text(
                     "Chat",
                     style: GoogleFonts.kanit(fontSize: 24, color: Colors.white),
@@ -89,7 +95,7 @@ class _chatListState extends State<chatList> {
           FirebaseFirestore.instance.collection('users').doc(uid).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (!snapshot.hasData) {
-            return Center(child: const CupertinoActivityIndicator());
+          return Center(child: const CupertinoActivityIndicator());
         }
         var userDocument = snapshot.data;
         return Column(
@@ -164,12 +170,22 @@ class _chatListState extends State<chatList> {
           return const CupertinoActivityIndicator();
         }
         var userDocument = snapshot.data;
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(1000),
-          child: Image.network(
-            userDocument["profile_picture"],
-            scale: 3,
-            fit: BoxFit.fill,
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Profile(),
+              ),
+            );
+          },
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(1000),
+            child: Image.network(
+              userDocument["profile_picture"],
+              scale: 3,
+              fit: BoxFit.fill,
+            ),
           ),
         );
       },

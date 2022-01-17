@@ -1,21 +1,18 @@
-import 'package:chitchat/view/Home/addfriend/invite.dart';
-import 'package:chitchat/view/Home/addfriend/myqrcode.dart';
 import 'package:chitchat/view/Home/addfriend/scan.dart';
-import 'package:chitchat/view/Home/addfriend/searchuser.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-class AddMenu extends StatefulWidget {
-  AddMenu({Key? key}) : super(key: key);
+class MyQRCode extends StatefulWidget {
+  MyQRCode({Key? key}) : super(key: key);
   @override
-  _AddMenuState createState() => _AddMenuState();
+  _MyQRCodeState createState() => _MyQRCodeState();
 }
 
-class _AddMenuState extends State<AddMenu> {
+class _MyQRCodeState extends State<MyQRCode> {
   @override
   String? email;
   final List<String> entries = <String>[
@@ -52,38 +49,42 @@ class _AddMenuState extends State<AddMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text("Add Friend"),
+        title: const Text("My QR Code"),
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),
         /* backgroundColor: Colors.amber, */
       ),
       backgroundColor: Colors.black,
-      body: Container(
-          margin: const EdgeInsets.all(16),
-          child: Column(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.all(16),
+            child: Text(
+              "Your QR Code",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  buildButtonQRCode(context),
-                  buildButtonScan(context),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  buildButtonSearch(context),
-                  buildButtonInvite(context),
-                ],
+              Container(
+                margin: EdgeInsets.all(8),
+                color: Colors.white,
+                child: QrImage(
+                  data: 'This is a simple QR code',
+                  version: QrVersions.auto,
+                  size: 320,
+                  gapless: false,
+                ),
               ),
             ],
-          )),
+          )
+        ],
+      ),
     );
   }
 
@@ -91,10 +92,7 @@ class _AddMenuState extends State<AddMenu> {
     return Container(
       margin: const EdgeInsets.all(8),
       child: InkWell(
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => MyQRCode()));
-        },
+        onTap: () {},
         child: Container(
             constraints: const BoxConstraints.expand(width: 150, height: 150),
             child: Column(
@@ -175,14 +173,7 @@ class _AddMenuState extends State<AddMenu> {
     return Container(
       margin: const EdgeInsets.all(8),
       child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SearchUser(),
-            ),
-          );
-        },
+        onTap: () {},
         child: Container(
             constraints: const BoxConstraints.expand(width: 150, height: 150),
             child: Column(
@@ -221,14 +212,7 @@ class _AddMenuState extends State<AddMenu> {
     return Container(
       margin: const EdgeInsets.all(8),
       child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => InviteUser(),
-            ),
-          );
-        },
+        onTap: () {},
         child: Container(
             constraints: const BoxConstraints.expand(width: 150, height: 150),
             child: Column(

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:chitchat/view/Home/addfriend/addmenu.dart';
+import 'package:chitchat/view/Home/optionmenu/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -51,7 +52,7 @@ class _friendListState extends State<friendList> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         title: Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -186,12 +187,22 @@ class _friendListState extends State<friendList> {
           return const CupertinoActivityIndicator();
         }
         var userDocument = snapshot.data;
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(1000),
-          child: Image.network(
-            userDocument["profile_picture"],
-            scale: 3,
-            fit: BoxFit.fill,
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Profile(),
+              ),
+            );
+          },
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(1000),
+            child: Image.network(
+              userDocument["profile_picture"],
+              scale: 3,
+              fit: BoxFit.fill,
+            ),
           ),
         );
       },

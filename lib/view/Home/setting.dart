@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:chitchat/view/Auth/login_page.dart';
+import 'package:chitchat/view/Home/optionmenu/profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -52,6 +53,7 @@ class _settingState extends State<setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         title: Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -97,18 +99,23 @@ class _settingState extends State<setting> {
                 child: ListView(
               padding: const EdgeInsets.all(8),
               children: <Widget>[
-                Container(
-                  decoration: BoxDecoration(
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  Profile()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
            
-                   borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.transparent,
-                  ),
-                  padding: EdgeInsets.all(8),
-                  margin: EdgeInsets.only(bottom: 12),
-                  height: 50,
-                  child: Text(
-                    'set Option A',
-                    style: GoogleFonts.kanit(fontSize: 16, color: Colors.white),
+                     borderRadius: BorderRadius.circular(15.0),
+                      color: Colors.transparent,
+                    ),
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.only(bottom: 12),
+                    height: 50,
+                    child: Text(
+                      'Profile',
+                      style: GoogleFonts.kanit(fontSize: 16, color: Colors.white),
+                    ),
                   ),
                 ),
                 Container(
