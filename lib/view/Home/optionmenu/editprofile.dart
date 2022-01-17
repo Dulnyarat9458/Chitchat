@@ -54,7 +54,7 @@ class _EditProfilestate extends State<EditProfile> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: const Text("Profile"),
+        title: const Text("Edit"),
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),
@@ -102,69 +102,29 @@ class _EditProfilestate extends State<EditProfile> {
               margin: EdgeInsets.only(left: 16, right: 16),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Email: ",
-                        style: GoogleFonts.kanit(
-                            color: Colors.white, fontSize: 18),
-                      ),Text(
-                        userDocument["email"],
-                        style: GoogleFonts.kanit(
-                            color: Colors.white70, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Username: ",
-                        style: GoogleFonts.kanit(
-                            color: Colors.white, fontSize: 18),
-                      ),Text(
-                        userDocument["username"],
-                        style: GoogleFonts.kanit(
-                            color: Colors.white70, fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "About: ",
-                        style: GoogleFonts.kanit(
-                            color: Colors.white, fontSize: 18),
-                      ), Text(
-                        userDocument["about"],
-                        style: GoogleFonts.kanit(
-                            color: Colors.white70, fontSize: 18),
-                      ),
-                    ],
-                  ),
+                  buildTextFieldEmail(),
+                  buildTextFieldUsername(),
+                  buildTextFieldAbout(),
                 ],
               ),
             ),
-            Divider(
+            const Divider(
               color: Colors.transparent,
             ),
-            Divider(
+            const Divider(
               color: Colors.transparent,
             ),
-            buildButtonEdit( context)
+            buildButtonEdit(context)
           ],
         );
       },
     );
   }
+
   Container buildButtonEdit(BuildContext context) {
     return Container(
       child: InkWell(
-        onTap: () {
-          
-        },
+        onTap: () {},
         child: Container(
             constraints: BoxConstraints.expand(width: 300, height: 50),
             child: Text(
@@ -199,6 +159,7 @@ class _EditProfilestate extends State<EditProfile> {
       ),
     );
   }
+
   Container buildButtonQRCode(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
@@ -373,5 +334,152 @@ class _EditProfilestate extends State<EditProfile> {
             padding: const EdgeInsets.all(8)),
       ),
     );
+  }
+
+  Container buildTextFieldUsername() {
+    return Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+        ),
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.only(top: 12),
+        child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            onChanged: (value) => email = value.trim(),
+            decoration: InputDecoration(
+              enabledBorder: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(25.0),
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              focusedBorder: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(25.0),
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              fillColor: const Color(0xff22262f),
+              filled: true,
+              isDense: true,
+              contentPadding: EdgeInsets.all(18),
+              prefixIcon: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xfff6072f),
+                      Color(0xfff200a1),
+                    ]).createShader(bounds),
+                child: const Icon(
+                  Icons.person,
+                  color: const Color(0xfff04c4d),
+                ),
+              ),
+              hintText: 'Username',
+              hintStyle: GoogleFonts.kanit(
+                fontSize: 16.0,
+                color: const Color(0xff6b7992),
+              ),
+            ),
+            style: GoogleFonts.kanit(
+              fontSize: 16,
+              color: Colors.white,
+            )));
+  }
+
+  Container buildTextFieldAbout() {
+    return Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+        ),
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.only(top: 12),
+        child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            onChanged: (value) => email = value.trim(),
+            decoration: InputDecoration(
+              enabledBorder:  OutlineInputBorder(
+                borderRadius:  BorderRadius.circular(25.0),
+                borderSide:  const BorderSide(color: Colors.transparent),
+              ),
+              focusedBorder:  OutlineInputBorder(
+                borderRadius:  BorderRadius.circular(25.0),
+                borderSide: const BorderSide(color: Colors.transparent),
+              ),
+              fillColor: const Color(0xff22262f),
+              filled: true,
+              isDense: true,
+              contentPadding: EdgeInsets.all(18),
+              prefixIcon: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xfff6072f),
+                      Color(0xfff200a1),
+                    ]).createShader(bounds),
+                child: const Icon(
+                  Icons.lock,
+                  color: const Color(0xfff04c4d),
+                ),
+              ),
+              hintText: 'About',
+              hintStyle: GoogleFonts.kanit(
+                fontSize: 16.0,
+                color: const Color(0xff6b7992),
+              ),
+            ),
+            style: GoogleFonts.kanit(
+              fontSize: 16,
+              color: Colors.white,
+            )));
+  }
+
+  Container buildTextFieldEmail() {
+    return Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+        ),
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.only(top: 12),
+        child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            onChanged: (value) => email = value.trim(),
+            decoration: InputDecoration(
+              enabledBorder: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(25.0),
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              focusedBorder: new OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(25.0),
+                borderSide: BorderSide(color: Colors.transparent),
+              ),
+              fillColor: const Color(0xff22262f),
+              filled: true,
+              isDense: true,
+              contentPadding: EdgeInsets.all(18),
+              prefixIcon: ShaderMask(
+                blendMode: BlendMode.srcATop,
+                shaderCallback: (bounds) => const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xfff6072f),
+                      Color(0xfff200a1),
+                    ]).createShader(bounds),
+                child: const Icon(
+                  Icons.email,
+                  color: const Color(0xfff04c4d),
+                ),
+              ),
+              hintText: 'Email',
+              hintStyle: GoogleFonts.kanit(
+                fontSize: 16.0,
+                color: const Color(0xff6b7992),
+              ),
+            ),
+            style: GoogleFonts.kanit(
+              fontSize: 16,
+              color: Colors.white,
+            )));
   }
 }

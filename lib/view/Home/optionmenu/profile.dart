@@ -2,6 +2,7 @@ import 'package:chitchat/view/Home/addfriend/invite.dart';
 import 'package:chitchat/view/Home/addfriend/myqrcode.dart';
 import 'package:chitchat/view/Home/addfriend/scan.dart';
 import 'package:chitchat/view/Home/addfriend/searchuser.dart';
+import 'package:chitchat/view/Home/optionmenu/editprofile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -165,7 +166,12 @@ class _ProfileState extends State<Profile> {
     return Container(
       child: InkWell(
         onTap: () {
-          
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditProfile(),
+            ),
+          );
         },
         child: Container(
             constraints: BoxConstraints.expand(width: 300, height: 50),
