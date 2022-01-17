@@ -136,44 +136,42 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Container buildButtonSignIn(BuildContext context) {
-    return Container(
-      child: InkWell(
-        onTap: () {
-          checkAuthentication(context);
-        },
-        child: Container(
-            constraints: BoxConstraints.expand(width: 300, height: 50),
-            child: Text(
-              "Sign in",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.kanit(
-                fontSize: 18,
-                color: Colors.white,
-                /*     shadows: [
-                  Shadow(
-                    color: Colors.black,
-                    blurRadius: 16.0,
-                    offset: Offset(-0.0, 0.0),
-                  ),
-                ], */
-              ),
+  InkWell buildButtonSignIn(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        checkAuthentication(context);
+      },
+      child: Container(
+          constraints: const BoxConstraints.expand(width: 300, height: 50),
+          child: Text(
+            "Sign in",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.kanit(
+              fontSize: 18,
+              color: Colors.white,
+              /*     shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 16.0,
+                  offset: Offset(-0.0, 0.0),
+                ),
+              ], */
             ),
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 3,
-                color: Colors.black12.withOpacity(0.2),
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(25)),
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xfff6072f),
-                  Color(0xfff200a1),
-                ],
-              ),
+          ),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 3,
+              color: Colors.black12.withOpacity(0.2),
             ),
-            padding: const EdgeInsets.all(8)),
-      ),
+            borderRadius: const BorderRadius.all(Radius.circular(25)),
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xfff6072f),
+                Color(0xfff200a1),
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.all(8)),
     );
   }
 

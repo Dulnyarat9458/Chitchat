@@ -10,14 +10,20 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditProfile extends StatefulWidget {
-  EditProfile({Key? key}) : super(key: key);
+  final String username, email, about;
+  const EditProfile(
+      {Key? key,
+      required this.username,
+      required this.email,
+      required this.about})
+      : super(key: key);
   @override
   _EditProfilestate createState() => _EditProfilestate();
 }
 
 class _EditProfilestate extends State<EditProfile> {
   @override
-  String? email;
+  String? _email, _about, _username;
   final List<String> entries = <String>[
     'A',
     'B',
@@ -45,6 +51,10 @@ class _EditProfilestate extends State<EditProfile> {
 
   @override
   void initState() {
+    _username = widget.username;
+    _about = widget.about;
+    _email = widget.email;
+
     Firebase.initializeApp();
     super.initState();
   }
@@ -343,9 +353,9 @@ class _EditProfilestate extends State<EditProfile> {
         ),
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.only(top: 12),
-        child: TextField(
-            keyboardType: TextInputType.emailAddress,
-            onChanged: (value) => email = value.trim(),
+        child: TextFormField(initialValue: _username,
+            keyboardType: TextInputType.text,
+            onChanged: (value) => _username = value.trim(),
             decoration: InputDecoration(
               enabledBorder: new OutlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),
@@ -392,16 +402,17 @@ class _EditProfilestate extends State<EditProfile> {
         ),
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.only(top: 12),
-        child: TextField(
-            keyboardType: TextInputType.emailAddress,
-            onChanged: (value) => email = value.trim(),
+        child: TextFormField(
+          initialValue: _about,
+            keyboardType: TextInputType.text,
+            onChanged: (value) => _about = value.trim(),
             decoration: InputDecoration(
-              enabledBorder:  OutlineInputBorder(
-                borderRadius:  BorderRadius.circular(25.0),
-                borderSide:  const BorderSide(color: Colors.transparent),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25.0),
+                borderSide: const BorderSide(color: Colors.transparent),
               ),
-              focusedBorder:  OutlineInputBorder(
-                borderRadius:  BorderRadius.circular(25.0),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(25.0),
                 borderSide: const BorderSide(color: Colors.transparent),
               ),
               fillColor: const Color(0xff22262f),
@@ -441,9 +452,10 @@ class _EditProfilestate extends State<EditProfile> {
         ),
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.only(top: 12),
-        child: TextField(
+        child: TextFormField(
+            initialValue: _email,
             keyboardType: TextInputType.emailAddress,
-            onChanged: (value) => email = value.trim(),
+            onChanged: (value) => _email = value.trim(),
             decoration: InputDecoration(
               enabledBorder: new OutlineInputBorder(
                 borderRadius: new BorderRadius.circular(25.0),

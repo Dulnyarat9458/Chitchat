@@ -112,7 +112,8 @@ class _ProfileState extends State<Profile> {
                         "Email: ",
                         style: GoogleFonts.kanit(
                             color: Colors.white, fontSize: 18),
-                      ),Text(
+                      ),
+                      Text(
                         userDocument["email"],
                         style: GoogleFonts.kanit(
                             color: Colors.white70, fontSize: 18),
@@ -126,7 +127,8 @@ class _ProfileState extends State<Profile> {
                         "Username: ",
                         style: GoogleFonts.kanit(
                             color: Colors.white, fontSize: 18),
-                      ),Text(
+                      ),
+                      Text(
                         userDocument["username"],
                         style: GoogleFonts.kanit(
                             color: Colors.white70, fontSize: 18),
@@ -140,7 +142,8 @@ class _ProfileState extends State<Profile> {
                         "About: ",
                         style: GoogleFonts.kanit(
                             color: Colors.white, fontSize: 18),
-                      ), Text(
+                      ),
+                      Text(
                         userDocument["about"],
                         style: GoogleFonts.kanit(
                             color: Colors.white70, fontSize: 18),
@@ -156,57 +159,62 @@ class _ProfileState extends State<Profile> {
             Divider(
               color: Colors.transparent,
             ),
-            buildButtonEdit( context)
+            buildButtonEdit(context, userDocument["email"],
+                userDocument["username"], userDocument["about"])
           ],
         );
       },
     );
   }
-  Container buildButtonEdit(BuildContext context) {
-    return Container(
-      child: InkWell(
-        onTap: () {
-            Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => EditProfile(),
+
+  InkWell buildButtonEdit(BuildContext context, email, username, about) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EditProfile(
+              email: email,
+              username: username,
+              about: about,
             ),
-          );
-        },
-        child: Container(
-            constraints: BoxConstraints.expand(width: 300, height: 50),
-            child: Text(
-              "Edit",
-              textAlign: TextAlign.center,
-              style: GoogleFonts.kanit(
-                fontSize: 18,
-                color: Colors.white,
-                /*     shadows: [
-                  Shadow(
-                    color: Colors.black,
-                    blurRadius: 16.0,
-                    offset: Offset(-0.0, 0.0),
-                  ),
-                ], */
-              ),
+          ),
+        );
+      },
+      child: Container(
+          constraints: BoxConstraints.expand(width: 300, height: 50),
+          child: Text(
+            "Edit",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.kanit(
+              fontSize: 18,
+              color: Colors.white,
+              /*     shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 16.0,
+                  offset: Offset(-0.0, 0.0),
+                ),
+              ], */
             ),
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 3,
-                color: Colors.black12.withOpacity(0.2),
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(25)),
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xfff6072f),
-                  Color(0xfff200a1),
-                ],
-              ),
+          ),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 3,
+              color: Colors.black12.withOpacity(0.2),
             ),
-            padding: const EdgeInsets.all(8)),
-      ),
+            borderRadius: const BorderRadius.all(Radius.circular(25)),
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xfff6072f),
+                Color(0xfff200a1),
+              ],
+            ),
+          ),
+          padding: const EdgeInsets.all(8)),
     );
   }
+
   Container buildButtonQRCode(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
