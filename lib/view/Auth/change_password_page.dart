@@ -1,11 +1,9 @@
-import 'dart:ui';
 
 import 'package:chitchat/Controller/gradient_icon.dart';
 import 'package:chitchat/view/Auth/register_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 class ChangePasswordPage extends StatefulWidget {

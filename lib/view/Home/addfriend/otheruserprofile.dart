@@ -2,9 +2,9 @@ import 'package:chitchat/view/Home/addfriend/invite.dart';
 import 'package:chitchat/view/Home/addfriend/myqrcode.dart';
 import 'package:chitchat/view/Home/addfriend/scan.dart';
 import 'package:chitchat/view/Home/addfriend/searchuser.dart';
-import 'package:chitchat/view/Home/optionmenu/editprofile.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase/firebase.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';

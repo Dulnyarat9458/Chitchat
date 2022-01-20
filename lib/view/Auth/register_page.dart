@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'dart:ui';
 
 import 'package:chitchat/Controller/dialog.dart';
 import 'package:chitchat/view/Home/home_page.dart';
@@ -8,8 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:chitchat/Controller/gradient_icon.dart';

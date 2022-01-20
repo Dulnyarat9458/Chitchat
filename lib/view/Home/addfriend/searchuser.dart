@@ -1,7 +1,6 @@
-import 'package:chitchat/view/Home/addfriend/scan.dart';
+
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
