@@ -92,13 +92,43 @@ class _EditProfilestate extends State<EditProfile> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(1000),
-                  child: Image.network(
-                    userDocument["profile_picture"],
-                    scale: 3,
-                    fit: BoxFit.fill,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(1000),
+                      child: Image.network(
+                        userDocument["profile_picture"],
+                        scale: 3,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                     
+                        IconButton(
+                          icon: ShaderMask(
+                            blendMode: BlendMode.srcATop,
+                            shaderCallback: (bounds) => const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Color(0xfff6072f),
+                                  Color(0xfff200a1),
+                                ]).createShader(bounds),
+                            child: const Icon(
+                              Icons.image,
+                              color: const Color(0xfff04c4d),
+                            ),
+                          ),
+                          color: Colors.red,
+                          onPressed: () {
+                            setState(() {});
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -353,7 +383,8 @@ class _EditProfilestate extends State<EditProfile> {
         ),
         padding: EdgeInsets.all(8),
         margin: EdgeInsets.only(top: 12),
-        child: TextFormField(initialValue: _username,
+        child: TextFormField(
+            initialValue: _username,
             keyboardType: TextInputType.text,
             onChanged: (value) => _username = value.trim(),
             decoration: InputDecoration(
@@ -403,7 +434,7 @@ class _EditProfilestate extends State<EditProfile> {
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.only(top: 12),
         child: TextFormField(
-          initialValue: _about,
+            initialValue: _about,
             keyboardType: TextInputType.text,
             onChanged: (value) => _about = value.trim(),
             decoration: InputDecoration(

@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
+import 'package:chitchat/view/Home/addfriend/otheruserprofile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -22,9 +24,9 @@ class _QRScanState extends State<QRScan> {
   @override
   void reassemble() {
     super.reassemble();
-    if (Platform.isAndroid) {
-      controller!.pauseCamera();
-    }
+    // if (Platform.isAndroid) {
+    //   controller!.pauseCamera();
+    // }
     controller!.resumeCamera();
   }
 
@@ -44,15 +46,14 @@ class _QRScanState extends State<QRScan> {
       body: Column(
         children: <Widget>[
           Expanded(flex: 4, child: _buildQrView(context)),
-         
         ],
-      ),floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-      
-        onPressed: () async{
+        onPressed: () async {
           // Add your onPressed code here!
           await controller?.toggleFlash();
-                          setState(() {});
+          setState(() {});
         },
         backgroundColor: Colors.black,
         child: FutureBuilder(
@@ -94,13 +95,34 @@ class _QRScanState extends State<QRScan> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
-    setState(() {
-      this.controller = controller;
-    });
+    
+
+    this.controller = controller;
+    this.controller?.resumeCamera();
+
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-      });
+      if (mounted) {
+        controller.dispose();
+        FirebaseFirestore.instance
+            .collection('users')
+            .where('userid', isEqualTo: scanData.code)
+            .get()
+            .then((value) {
+          controller.dispose();
+          result = scanData;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OtherUserProfile(
+                uid2: (result?.code).toString(),
+              ),
+            ),
+          );
+
+          // ignore: avoid_print
+          print("test compolete");
+        });
+      }
     });
   }
 
